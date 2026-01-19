@@ -1,0 +1,42 @@
+{
+  "name": "utopia",
+  "version": "0.0.0",
+  "description": "A 3D space for building and innovating — create, arrange, explore, and save your virtual world.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./server/index.js",
+    "dev": "nodemon --watch ./src --watch ./server --exec \"pnpm start\"",
+    "build": "echo \"Add your bundler/build steps here\"",
+    "clean": "rimraf ./dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "3d",
+    "builder",
+    "webapp",
+    "threejs",
+    "sanctuary",
+    "utopia"
+  ],
+  "author": "Xavatar <email@placeholder.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Xavatar3/utopia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Xavatar3/utopia/issues"
+  },
+  "homepage": "https://github.com/Xavatar3/utopia#readme",
+  "packageManager": "pnpm@10.28.0",
+  "dependencies": {
+    "express": "^5.2.1",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11",
+    "rimraf": "^6.1.2"
+  }
+}
