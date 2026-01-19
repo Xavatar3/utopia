@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./server/index.js",
-    "dev": "nodemon --watch ./src --watch ./server --exec \"pnpm start\"",
+    "dev": "nodemon --watch ./server --exec \"pnpm start\"",
     "build": "echo \"Add your bundler/build steps here\"",
     "clean": "rimraf ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
