@@ -2,7 +2,7 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { logFallback } from "./logger.js"
+import { logFallback } from "./utils/logger.js"
 //import objectsRouter from "./routes/objects.js";
 
 const app = express();
@@ -14,9 +14,6 @@ app.use(express.static(path.join(__dirname, "../src")));
 
 // Middleware
 //app.use(express.json()); // parse JSON
-
-// API routes
-//app.use("/api/objects", objectsRouter);
 
 // Fallback
 app.get(/.*/, (req, res) => {
