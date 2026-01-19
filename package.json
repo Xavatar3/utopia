@@ -1,6 +1,6 @@
 {
   "name": "utopia",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A 3D space for building and innovating — create, arrange, explore, and save your virtual world.",
   "main": "index.js",
   "type": "module",
