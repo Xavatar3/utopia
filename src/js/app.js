@@ -1,6 +1,7 @@
-import * as THREE from "three";
-
+//import * as THREE from "three";
+alert(3)
 // Scene
+/*
 const scene = new THREE.Scene();
 
 // Camera
@@ -27,4 +28,4 @@ function animate() {
   cube.rotation.y += 0.01;
   renderer.render(scene, camera);
 }
-animate();
+animate();*/
