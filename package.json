@@ -5,9 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node ./server/index.js",
-    "dev": "nodemon --watch ./server --exec \"pnpm start\"",
-    "build": "echo \"Add your bundler/build steps here\"",
+    "client:dev": "vite",
+    "client:build": "vite build",
+    "server:dev": "nodemon ./server/index.js",
+    "dev": "concurrently \"pnpm server:dev\" \"pnpm client:dev\"",
+    "build": "pnpm client:build",
     "clean": "rimraf ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,6 +33,7 @@
   "homepage": "https://github.com/Xavatar3/utopia#readme",
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
+    "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "three": "^0.182.0"
   },
