@@ -1,5 +1,15 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { Pane } from 'tweakpane';
+import { AIRobot } from './characters.js';
+
+// Settings
+const settings = new Pane({
+	title: 'Settings',
+	//container: document.body,
+	expanded: true,
+});
 
 // Scene
 const scene = new THREE.Scene();
@@ -16,21 +26,73 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 //Light
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(5, 10, 5);
-scene.add(light);
+
+// Light Settings
+const lightSettings = settings.addFolder({
+	title: 'Light',
+	expanded: true
+});
+
+// Directional Light
+const sunSettings = {
+	color: 0,
+	intensity: 2,
+	desc: {
+		label: 'Intensity',
+		description: 'Sun Light',
+		min: 0,
+		max: 10,
+		step: 0.1
+	}
+};
+
+const sunLight = new THREE.DirectionalLight(0xffffff, sunSettings.intensity);
+sunLight.position.set(5, 10, 5);
+scene.add(sunLight);
+
+lightSettings.addBinding(sunSettings, 'intensity', sunSettings.desc).on('change', (v) => {
+  let key = v.target.key;
+  sunLight[key] = v.value;
+});
+
+// Ambient Light
+const ambientSettings = {
+	color: 0,
+	intensity: 1,
+	desc: {
+		label: 'Intensity',
+		description: 'Natural Light',
+		min: 0,
+		max: 10,
+		step: 0.1
+	}
+};
+
+const ambientLight = new THREE.AmbientLight(0xffffff, ambientSettings.intensity); 
+scene.add(ambientLight);
+
+lightSettings.addBinding(ambientSettings, 'intensity', ambientSettings.desc).on('change', (v) => {
+  let key = v.target.key;
+  ambientLight[key] = v.value;
+});
+
+
+// Fill light
+const fill = new THREE.DirectionalLight(0xffffff, 0.3);
+fill.position.set(-5, 5, -5);
+//scene.add(fill);
 
 // Controls 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.target.set(0, 0, 0); // center to orbit around
 controls.update();
 
-// Sample cube
-const cubeGeometry = new THREE.BoxGeometry();
-const cubeMaterial = new THREE.MeshNormalMaterial();
-const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-cube.position.set(0, 0, 0);
-scene.add(cube);
+// Character 
+const character = new AIRobot();
+await character.init();
+character.mesh.scale.set(4,4,4)
+character.mesh.position.set(0, -1, 0)
+scene.add(character.mesh)
 
 //Platform
 const circleRadius = 3;
@@ -100,8 +162,7 @@ scene.add(arcLine);*/
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  character.mesh.rotation.y += 0.005;
   renderer.render(scene, camera);
 }
 animate();
