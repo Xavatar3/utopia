@@ -33,8 +33,10 @@
   "homepage": "https://github.com/Xavatar3/utopia#readme",
   "packageManager": "pnpm@10.28.0",
   "dependencies": {
+    "@dimforge/rapier3d": "^0.19.3",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "nipplejs": "^0.10.2",
     "three": "^0.182.0",
     "tweakpane": "^4.0.5"
   },
@@ -42,6 +44,8 @@
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.11",
     "rimraf": "^6.1.2",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vite-plugin-top-level-await": "^1.6.0",
+    "vite-plugin-wasm": "^3.5.0"
   }
 }
