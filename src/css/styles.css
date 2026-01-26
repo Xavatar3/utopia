@@ -1,3 +1,7 @@
+body {
+   background-color: #222;
+}
+
 #joystick-zone {
   position: fixed;
   bottom: 12vh;
